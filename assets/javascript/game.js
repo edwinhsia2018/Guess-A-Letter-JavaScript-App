@@ -5,7 +5,8 @@ var guessesLeft = 9 //lives left
 var wins = 0;
 var losses = 0;
 var guessMade = [];
-var playAudio = new Audio('assets/audio/gameover.wav');
+var audioLoss = new Audio('assets/audio/gameover.wav');
+var audioWin = new Audio('assets/audio/winner.wav');
 
 // window.addEventListener("keyup", eventKeyPressed, true);
 document.onkeyup = function(entry) {
@@ -17,6 +18,7 @@ document.onkeyup = function(entry) {
     if (userGuess == letterPicked) {
         wins++;
         letterPicked = alphabet[Math.floor(Math.random() * alphabet.length)];
+        audioWin.play();
         alert ("Congrats!  You are psychic!");
         guessesLeft = 9;
         guessMade = [];
@@ -26,7 +28,7 @@ document.onkeyup = function(entry) {
         guessesLeft--;
     }
     if (guessesLeft == 0) {   
-        playAudio.play();
+        audioLoss.play();
         alert("Game Over Man!");
         losses ++;
         guessesLeft = 9;
