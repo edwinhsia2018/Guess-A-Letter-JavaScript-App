@@ -5,17 +5,13 @@ var guessesLeft = 9 //lives left
 var wins = 0;
 var losses = 0;
 var guessMade = [];
+var playAudio = new Audio('assets/audio/gameover.wav');
 
 // window.addEventListener("keyup", eventKeyPressed, true);
 document.onkeyup = function(entry) {
     
     //capture the user's guess and sets to lowercase
     var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-    //Make sure user is not using a letter already guessed
-    // if (userGuess == ) {
-
-    // }
     
     //checks the user's guess against the randomly selected letter
     if (userGuess == letterPicked) {
@@ -30,6 +26,7 @@ document.onkeyup = function(entry) {
         guessesLeft--;
     }
     if (guessesLeft == 0) {   
+        playAudio.play();
         alert("Game Over Man!");
         losses ++;
         guessesLeft = 9;
